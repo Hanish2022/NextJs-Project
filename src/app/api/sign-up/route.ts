@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   try {
     const { username, email, password } = await request.json(); //this is basically req.body from express
 
-    //check if user have username and verified also
+    //! check if user have username and verified also
     const existingUserVerifiedByUsername = await UserModel.findOne({
       username,
       isVerified: true,
@@ -24,11 +24,11 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
     const existingUserByEmail = await UserModel.findOne({ email });
     //verification code || OTP
     const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
-
+    
+    //! check if user exists with this mail
       if (existingUserByEmail) {
         //if current user Verified
         if (existingUserByEmail.isVerified) {
