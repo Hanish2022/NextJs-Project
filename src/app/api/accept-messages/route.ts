@@ -6,10 +6,13 @@ import { User } from "next-auth";
 
 //ek post req bnao jis se jo currently login user h vo toggle kr paye to whether he want to accept or not messages
 
+
+//this one is for status updating of message accepting
 export async function POST(request:Request) {
     await dbConnect()
 
-    //now i want to have currentlhy login user
+    //now i have currentlhy login user
+    //getiserversession current user ka session de deta h
     const session = await getServerSession(authOptions);
     //session k andr user h
     const user: User = session?.user as User;
@@ -22,7 +25,7 @@ export async function POST(request:Request) {
 
     //now i want id of user
     const userId = user._id;
-    //flag kind of
+    //accept krna h message or not
     const { acceptMessages } = await request.json();
 
     try {
@@ -63,6 +66,8 @@ export async function POST(request:Request) {
 
 }
 
+
+//this one gives back the message acceptance status
 export async function GET(request:Request) {
      await dbConnect();
 
