@@ -45,9 +45,9 @@ export async function GET(request: Request) {
           return Response.json(
             {
               success: true,
-              message: "Usernam avaialabe",
+              message: "Usernamw avaialabe",
             },
-            { status: 500 }
+            { status: 200 }
           );
     } catch (error) {
         console.log("Error checking username" ,error);
@@ -55,7 +55,7 @@ export async function GET(request: Request) {
             success: false,
             message:"Error checking username"
         }, {
-            status:500
+            status:400
         })
     }
 }
